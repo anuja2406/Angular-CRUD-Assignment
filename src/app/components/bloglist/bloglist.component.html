@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row" style="margin-top: 25px;">
+        <div class="col-md-8 offset-md-2">
+
+            <div class="card" style="width: 60rem;" *ngFor="let blogs of blogs" style="margin-top:10px">
+
+                <div class="card-body" *ngIf="!blogs.isEdit; else elseBlock">
+
+                    <h5 class="card-title">{{blogs.title}}</h5>
+                    <h4 class="card-title">{{blogs.topic}}</h4>
+                    <div class="card-subtitle mb-2 text-muted" [innerHTML]="blogs.description"></div>
+
+                    <p class="card-text">{{blogs.date}} </p>
+                    <a href="#" class="card-link" (click)="editRecord(blogs)">Edit</a>
+
+                    <a href="#" class="card-link" (click)="removeRecord(blogs.id)">Delete</a>
+                </div>
+
+                <ng-template #elseBlock>
+
+                    <div class="card-body">
+                        <div>
+                            <a href="#" class="card-link" (click)="blogs.isEdit = false">Cancel</a>
+                            <a href="#" class="card-link" (click)="UpdateRecord(blogs)">Update</a>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" [(ngModel)]="blogs.EditTitle" placeholder="Edit Title">
+                                </div>
+
+                                <div class="col-md-12 mt-2">
+                                    <angular-editor type="text" class="form-control" [(ngModel)]="blogs.EditDescription" placeholder="Edit Description" style="height:300px;"></angular-editor>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-template>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
